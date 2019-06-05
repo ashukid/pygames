@@ -9,6 +9,7 @@ class Hangman:
         self.line4=" "*self.sc + "     |"
         self.line5=" "*self.sc + "     |"
         self.line6=" "*self.sc + "======" 
+        self.count=-1
 
     def draw(self):
         print(self.line1)
@@ -29,15 +30,32 @@ class Hangman:
 
     def hang(self):
         self.line5=" "*self.sc + "hanged"
-    
+   
+    def hang_and_draw(self):
+        self.count+=1
+        if(self.count==0):
+            self.add_head()
+            self.draw()
+            return False
+        if(self.count==1):
+            self.add_body()
+            self.draw()
+            return False
+        if(self.count==2):
+            self.add_legs()
+            self.draw()
+            return False
+        if(self.count==3):
+            self.hang()
+            self.draw()
+            return True
+
+
 if(__name__=='__main__'):
     man=Hangman()
-    man.draw()
-    man.add_head()
-    man.draw()
-    man.add_body()
-    man.draw()
-    man.add_legs()
-    man.draw()
-    man.hang()
-    man.draw()
+    man.hang_and_draw()
+    man.hang_and_draw()
+    man.hang_and_draw()
+    man.hang_and_draw()
+    man.hang_and_draw()
+    man.hang_and_draw()
